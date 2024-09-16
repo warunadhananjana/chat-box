@@ -16,11 +16,11 @@ app.post('/authenticate', async (req, res) => {
 		);
 		return res.status(r.status).json(r.data);
 	} catch (e) {
-		// Check if e.response exists to avoid crashing
+		
 		if (e.response) {
 			return res.status(e.response.status).json(e.response.data);
 		} else {
-			// Handle other types of errors, like network issues
+			
 			return res.status(500).json({ error: 'Something went wrong.' });
 		}
 	}
