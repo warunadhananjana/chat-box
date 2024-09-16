@@ -1,7 +1,13 @@
-const AuthPage = (props) => {
-  const onSubmit = (e) => {
+import React, { FormEvent } from "react";
+
+interface AuthPageProps {
+  onAuth: (authData: { username: string; secret: string }) => void;
+}
+
+const AuthPage: React.FC<AuthPageProps> = (props) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { value } = e.target[0];
+    const { value } = e.currentTarget[0] as HTMLInputElement;
     props.onAuth({ username: value, secret: value });
   };
 
