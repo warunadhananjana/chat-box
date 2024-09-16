@@ -1,5 +1,5 @@
 import React, { FormEvent } from "react";
-
+import axios from "axios";
 interface AuthPageProps {
   onAuth: (authData: { username: string; secret: string }) => void;
 }
@@ -8,6 +8,12 @@ const AuthPage: React.FC<AuthPageProps> = (props) => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { value } = e.currentTarget[0] as HTMLInputElement;
+     axios.post(
+      "http://localhost:3001/authenticate", 
+      { username: value })
+      .then((r) => props.onAuth({ ...r.data, secret: value }))
+      .catch((e) => console.log("Auth Error", e));
+     
     props.onAuth({ username: value, secret: value });
   };
 
