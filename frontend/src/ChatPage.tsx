@@ -6,7 +6,7 @@ interface ChatPageProps {
   user: { username: string; secret: string };
 }
 
-const ChatPage: React.FC<ChatPageProps> = ({ user }) => {  // Destructure user directly
+const ChatPage: React.FC<ChatPageProps> = ({ user }) => {  
   const chatProps = useMultiChatLogic(
     '716de15e-efdf-430c-8175-e2db2539f449',
     user.username,  // Use user object directly
